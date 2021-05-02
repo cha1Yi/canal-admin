@@ -29,6 +29,7 @@ public class PollingConfigServiceImpl implements PollingConfigService {
     @Autowired
     CanalClusterService canalClusterService;
 
+    @Override
     public boolean autoRegister(String ip, Integer adminPort, String cluster, String name) {
         NodeServer server = NodeServer.find.query().where().eq("ip", ip).eq("adminPort", adminPort).findOne();
         if (server == null) {
@@ -52,6 +53,7 @@ public class PollingConfigServiceImpl implements PollingConfigService {
         return true;
     }
 
+    @Override
     public CanalConfig getChangedConfig(String ip, Integer port, String md5) {
         NodeServer server = NodeServer.find.query().where().eq("ip", ip).eq("adminPort", port).findOne();
         if (server == null) {
@@ -73,6 +75,7 @@ public class PollingConfigServiceImpl implements PollingConfigService {
         return null;
     }
 
+    @Override
     public CanalInstanceConfig getInstancesConfig(String ip, Integer port, String md5) {
         NodeServer server = NodeServer.find.query().where().eq("ip", ip).eq("adminPort", port).findOne();
         if (server == null) {
@@ -112,6 +115,7 @@ public class PollingConfigServiceImpl implements PollingConfigService {
         return canalInstanceConfig;
     }
 
+    @Override
     public CanalInstanceConfig getInstanceConfig(String destination, String md5) {
         CanalInstanceConfig instanceConfig = CanalInstanceConfig.find.query().where().eq("name", destination).findOne();
         if (instanceConfig == null) {

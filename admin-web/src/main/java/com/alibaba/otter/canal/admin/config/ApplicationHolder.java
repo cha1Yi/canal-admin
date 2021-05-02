@@ -12,23 +12,24 @@ import org.springframework.stereotype.Component;
  * @version 1.0.0
  */
 @Component
-public class SpringContext implements ApplicationContextAware {
+public class ApplicationHolder implements ApplicationContextAware {
 
     private static ApplicationContext context;
 
-    /*
+    /**
      * 注入ApplicationContext
      */
+    @Override
     public void setApplicationContext(final ApplicationContext context) throws BeansException {
         // 在加载Spring时自动获得context
-        SpringContext.context = context;
+        ApplicationHolder.context = context;
     }
 
-    public static Object getBean(final String beanName) {
-        return SpringContext.context.getBean(beanName);
+    public static <T> T getBean(final String beanName, Class<T> clz) {
+        return ApplicationHolder.context.getBean(beanName, clz);
     }
 
-    public static Object getBean(final Class<?> clz) {
+    public static <T> T getBean(final Class<T> clz) {
         return context.getBean(clz);
     }
 }

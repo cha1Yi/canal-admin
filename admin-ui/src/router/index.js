@@ -73,8 +73,8 @@ export const constantRoutes = [
     path: '/canalServer',
     component: Layout,
     redirect: '/canalServer/nodeServers',
-    name: 'Canal Server',
-    meta: { title: 'Canal Server', icon: 'example' },
+    name: 'Canal Server 管理',
+    meta: { title: 'Canal Server 管理', icon: 'example' },
     children: [
       {
         path: 'canalClusters',
@@ -128,6 +128,48 @@ export const constantRoutes = [
         component: () => import('@/views/canalServer/CanalInstanceLogDetail'),
         meta: { title: 'Instance 日志' },
         hidden: true
+      }
+    ]
+  },
+  {
+    path: '/datasource',
+    component: Layout,
+    redirect: '/datasource/db',
+    name: '数据源管理',
+    meta: { title: '数据源管理', icon: 'example' },
+    children:[
+      {
+        path:'db',
+        name:'数据库管理',
+        component:()=>import('@/views/datasource/DBConfig'),
+        meta:{title:'数据库管理',icon:'example'}
+      },
+      {
+        path:'middleware',
+        name:'中间件管理',
+        component:()=>import('@/views/datasource/MiddleWare'),
+        meta:{title:'中间件管理',icon:'example'}
+      }
+    ]
+  },
+  {
+    path: '/flow',
+    component: Layout,
+    redirect: '/flow/list',
+    name: '流程管理',
+    meta: { title: '流程管理', icon: 'example' },
+    children:[
+      {
+        path:'list',
+        name:'流程列表',
+        component:()=>import('@/views/flow/FlowList'),
+        meta:{title:'流程列表',icon:'example'}
+      },
+      {
+        path:'edit',
+        name:'流程编辑',
+        component:()=>import('@/views/flow/FlowEdit'),
+        meta:{title:'流程编辑',icon:'example'}
       }
     ]
   },

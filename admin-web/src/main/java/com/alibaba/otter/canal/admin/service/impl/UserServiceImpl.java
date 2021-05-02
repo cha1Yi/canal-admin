@@ -2,6 +2,7 @@ package com.alibaba.otter.canal.admin.service.impl;
 
 import java.security.NoSuchAlgorithmException;
 
+import io.ebean.annotation.Transactional;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
     private static byte[] seeds = "canal is best!".getBytes();
 
+    @Override
     public User find4Login(String username, String password) {
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
             return null;
@@ -42,6 +44,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
     public void update(User user) {
         User userTmp = User.find.query().where().eq("username", user.getUsername()).findOne();
         if (userTmp == null) {
@@ -61,5 +64,20 @@ public class UserServiceImpl implements UserService {
         }
 
         user.update("username", "nn:password");
+    }
+
+    @Override
+    public void register(User user) {
+        try {
+            final int count = User.find.query().where().eq("username", user.getUsername()).findCount();
+            if (count > 0) {
+                throw new ServiceException("已经存在该用户：" + user.getUsername());
+            }
+            final byte[] bytes = SecurityUtil.scramble411(user.getPassword().getBytes(), seeds);
+            user.setPassword(SecurityUtil.byte2HexStr(bytes));
+            user.save();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 }

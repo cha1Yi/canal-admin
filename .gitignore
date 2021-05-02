@@ -25,7 +25,6 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
 
 ### VS Code ###
 .vscode/
@@ -35,4 +34,3 @@ mvnw
 
 
 ## 静态资源ignore ##
-*public

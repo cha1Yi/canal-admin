@@ -2,18 +2,17 @@ package com.alibaba.otter.canal.admin.connector;
 
 import java.util.function.Function;
 
+import com.alibaba.otter.canal.admin.config.ApplicationHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
-
-import com.alibaba.otter.canal.admin.config.SpringContext;
 
 public class SimpleAdminConnectors {
 
     private static final Logger logger = LoggerFactory.getLogger(SimpleAdminConnectors.class);
 
     public static <R> R execute(String ip, int port, Function<AdminConnector, R> function) {
-        Environment env = (Environment) SpringContext.getBean(Environment.class);
+        final Environment env = ApplicationHolder.getBean(Environment.class);
         String defaultUser = env.getProperty("canal.adminUser", "admin");
         String defaultPasswd = env.getProperty("canal.adminPasswd", "admin");
 

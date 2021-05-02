@@ -7,4 +7,6 @@ public interface UserService {
     User find4Login(String username, String password);
 
     void update(User user);
+
+    void register(User user);
 }

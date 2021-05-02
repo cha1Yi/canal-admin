@@ -30,28 +30,29 @@ public class NodeServer extends Model {
         /**
          * Construct using the default EbeanServer.
          */
-        public NodeServerFinder(){
+        public NodeServerFinder() {
             super(NodeServer.class);
         }
 
     }
 
     @Id
-    private Long         id;
+    private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cluster_id", updatable = false, insertable = false)
     private CanalCluster canalCluster;
     @Column(name = "cluster_id")
-    private Long         clusterId;
-    private String       name;
-    private String       ip;
-    private Integer      adminPort;
-    private Integer      metricPort;
-    private Integer      tcpPort;
-    private String       status;
+    private Long clusterId;
+    private String name;
+    private String ip;
+    private Integer adminPort;
+    private Integer metricPort;
+    private Integer tcpPort;
+    private String status;
     @WhenModified
-    private Date         modifiedTime;
+    private Date modifiedTime;
 
+    @Override
     public void init() {
         status = "-1";
     }
