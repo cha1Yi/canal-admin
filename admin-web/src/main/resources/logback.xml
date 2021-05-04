@@ -39,7 +39,7 @@
 		<appender-ref ref="CANAL-ROOT" />
 	</root>
 
-	<logger name="io.ebean.SQL" additivity="false">
+	<logger name="io.ebean.SQL" additivity="true">
 		<level value="INFO" />
 		<appender-ref ref="STDOUT"/>
 		<appender-ref ref="CANAL-ROOT" />

@@ -2,13 +2,11 @@ package com.alibaba.otter.canal.admin.controller;
 
 import com.alibaba.otter.canal.admin.model.BaseModel;
 import com.alibaba.otter.canal.admin.model.Database;
-import com.alibaba.otter.canal.admin.model.NodeServer;
 import com.alibaba.otter.canal.admin.model.Pager;
 import com.alibaba.otter.canal.admin.service.DatabaseService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.xml.crypto.Data;
 import java.util.Arrays;
 import java.util.List;
 
